@@ -1,0 +1,329 @@
+/* Sivun setuppi, lisätään parit fontit mitkä ei löytyny valmiina, ja asetetaan sivut */
+@import url('https://fonts.googleapis.com/css2?family=Gayathri:wght@100;400;700&display=swap');
+@font-face {
+  font-family: 'Splash';
+  font-style: normal;
+  font-weight: 400;
+  font-display: block;
+  src: url(https://fonts.gstatic.com/s/splash/v8/KtksAL2RZoDkbU6Ro_nH.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* Bodya laitellaan, laietaan se ladattu fontti pääfontiksi */
+body {
+  margin: 0;
+  padding: 0;
+  background: #000000;
+  font-family: 'Gayathri', sans-serif;
+  background-color: rgb(25, 24, 24);
+  color: white;
+}
+
+/* Muokataan isoa otsikkoa */
+.bigkaru {
+font-family: 'Splash';
+font-size: 130px;
+font-weight: 200;
+padding-bottom: 80px;
+@media (max-width: 768px) {
+      padding-bottom: 0;
+    }
+}
+/* Muokkaillaan osoite ja pvm tekstiä, niin että muistuttaa figman mallia.. */
+.pvm {
+  color: rgb(152, 233, 208);
+  letter-spacing: 0.4rem;
+  padding-bottom: 60px;
+}
+
+/* Tässä sitten asetellaan wrappiä, eli asetaan se musta taustaväri, sun muut tausta asetukset */
+.wrappi {
+  width: 80%;
+  max-width: 900px;
+  margin: 30px auto;
+  background: rgb(0, 0, 0);
+  border: 2px solid black;
+  padding: 20px;
+  text-align: center;
+  color: rgb(255, 255, 255);
+  letter-spacing: 0.4rem;
+}
+
+/* Header aluetta muokkaillaan, näitä fi ja sve kielten asetuksia laitetaan, ja että ulkonäkö ois kiva mobiilina */
+.header {
+  height: 140px;
+  border: 2px solid black;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  position: relative;
+  color: rgb(255, 255, 255);
+  a {
+    font-size: 20px;
+  }
+
+  .sv {
+      padding-left: 10px;
+  }
+  .fi {
+    padding-right: 10px;
+    
+  }
+  @media (max-width: 768px) {
+      height: auto;
+    }
+}
+
+/* Kielenvaihto nappien värejä ja muita kivoja ja käytännölisiä asetuksia laitellaan */
+.lang-switch {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+   color: rgb(152, 233, 208);
+   @media (max-width: 768px) {
+    position: static;
+    padding-bottom: 20px;
+    padding-top: 20px;
+  }
+text-shadow:
+    0 0 5px rgb(182, 255, 237),
+    0 0 10px rgba(182, 255, 251, 0.884),
+    0 0 20px rgba(164, 253, 249, 0.781);
+}
+
+
+/* Navien muokkaukset, näiden kanssa katotaan taas että toiminnot toimii ja ulkonäkö vastaa nettisivun suunnitelmaa*/
+.navEsi {
+  margin-top: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: rgb(255, 255, 255);
+  font-size: 35px;
+  margin-bottom: 25px;
+  letter-spacing: 1rem;
+   text-shadow:
+    0 0 5px rgb(182, 255, 237),
+    0 0 10px rgba(182, 255, 251, 0.884),
+    0 0 20px rgba(164, 253, 249, 0.781);
+}
+
+.navPe {
+  margin-top: 15px;
+  height: 120px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  color: white;
+
+  font-size: 20px;
+  margin-bottom: 25px;
+  letter-spacing: 0.4rem;
+}
+
+.navLa {
+  margin-top: 15px;
+  height: 120px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  color: white;
+
+  font-size: 20px;
+  margin-bottom: 25px;
+  letter-spacing: 0.4rem;
+}
+
+.navInfo {
+  margin-top: 15px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: rgb(152, 233, 208);
+  font-size: 35px;
+  margin-bottom: 25px;
+  letter-spacing: 1rem;
+  padding-bottom: 5px;
+  padding-top: 30px;
+
+}
+
+.infoText {
+  padding-bottom: 30px;
+}
+
+.navAiemmat {
+  margin-top: 15px;
+  height: 120px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 12px;
+  margin-bottom: 25px;
+  letter-spacing: 0.4rem;
+  
+}
+
+
+
+
+
+.nav-button {
+  border: 2px solid black;
+  padding: 10px 40px;
+  font-size: 20px;
+  background: rgb(0, 0, 0);
+  color: white;
+ letter-spacing: 0.4rem;
+  
+}
+
+.nav-text {
+  font-size: 20px;
+  margin-bottom: 25px;
+  color: white;
+  letter-spacing: 0.4rem;
+}
+
+/* Liput napin toiminnot laitetaan, niin että efektit toimii ja ulkonnäkö hyvä.*/
+.liput {
+  font-size: 40px;
+  letter-spacing: 0.9rem;
+  text-decoration:underline;
+  text-underline-offset: 5px; 
+   color: rgb(152, 233, 208);
+  border: 2px solid rgb(252, 250, 250);
+  padding: 15px;
+  max-width: 200px;
+  margin: auto;
+  margin-bottom: 150px;
+  text-shadow:
+    0 0 5px rgb(182, 255, 237),
+    0 0 10px rgba(182, 255, 251, 0.884),
+    0 0 20px rgba(164, 253, 249, 0.781);
+  
+}
+
+.liput:hover {
+  background-color: rgb(119, 141, 139);
+  font-size: 50px;
+  color: rgb(0, 0, 0);
+}
+
+/* Ruotsille piti tehdä oma classi, kun sana paljon pidempi, ei samat asetukset toiminut*/
+.biljetter  {
+  font-size: 40px;
+  letter-spacing: 0.9rem;
+  text-decoration:underline;
+  text-underline-offset: 5px; 
+   color: rgb(152, 233, 208);
+ border: 2px solid rgb(252, 250, 250);
+  padding: 15px;
+  max-width: 400px;
+  margin: auto;
+  margin-bottom: 150px;
+  text-shadow:
+    0 0 5px rgb(182, 255, 237),
+    0 0 10px rgba(182, 255, 251, 0.884),
+    0 0 20px rgba(164, 253, 249, 0.781);
+  
+}
+
+.biljetter:hover {
+  background-color: rgb(119, 141, 139);
+  font-size: 50px;
+  color: rgb(0, 0, 0);
+}
+
+/* Kuvien asettelua*/
+.imageboxes {
+margin-top: 25px;
+    display: flex;
+    justify-content: space-around;
+    color: white;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.imagebox {
+  height: 170px;
+  width: 320px;
+  color: rgb(0, 0, 0);
+}
+
+.imageboxes_previous {
+    margin-top: 25px;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.imagebox_previous {
+  width: 320px;
+}
+
+.footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: left;
+  padding: 30px 40px;
+  color:rgb(255, 255, 255);
+  
+}
+
+.footer-left p {
+  margin: 5px 0;
+  font-size: 14px;
+ color: rgb(152, 233, 208);
+  text-align: left;
+  letter-spacing: 4px;
+}
+
+.footer-title {
+  font-weight: bold;
+  letter-spacing: 1px;
+  margin-bottom: 10px;
+ color: rgb(152, 233, 208);
+}
+
+.footer-right {
+  font-size: 70px;
+  font-weight: bold;
+  letter-spacing: 4px;
+  color: rgb(152, 233, 208);
+  font-family: 'splash';
+  font-weight: 200;
+  text-align: left;
+   text-shadow:
+    0 0 5px rgb(96, 129, 121),
+    0 0 10px rgba(116, 150, 148, 0.884),
+    0 0 20px rgba(83, 109, 108, 0.781);
+}
+
+
+
+.kuva {
+  width: 100%;
+}
+
+
+
+/* Vanhoja*/
+.nav p {
+  margin-top: 15px;
+  height: 120px;
+  border: 2px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
