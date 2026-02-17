@@ -78,7 +78,100 @@
       <div class="infoText"> 
         <p> KARUFEST ON K18 TAPAHTUMA. LISÄTIEDOT AUKILOAJOISTA, ESIINTYJIEN AIKATAULUISTA SEKÄ RUOKAKOJUISTA 2026 TULOSSA PIAN. </p>
       </div>
-      
+
+      <section id="comments-section" aria-labelledby="comments-title">
+  <h2 id="comments-title">Palaute</h2>
+
+  <form id="comment-form" class="comment-form" onsubmit="return false;">
+    <label for="name">Nimi</label><br>
+    <input type="text" id="name" name="name" required maxlength="25" placeholder="Nimesi" /><br>
+
+    <label for="message">Palaute</label><br>
+    <textarea id="message" name="message" required maxlength="500" rows="4" placeholder="Kirjoita palautteesi"></textarea><br>
+
+    <button id="send-btn" type="button">Lähetä</button>
+    <span id="form-status" aria-live="polite"></span>
+  </form>
+
+  <h3>Asiakkaiden palaute</h3>
+  <div id="comments-list" aria-live="polite">
+  
+  </div>
+</section>
+
+<script>
+  
+  const commentsList = document.getElementById('comments-list');
+  const statusEl = document.getElementById('form-status');
+  const form = document.getElementById('comment-form');
+  const sendBtn = document.getElementById('send-btn');
+
+  function escapeHtml(s) {
+    return String(s)
+      .replaceAll('&', '&amp;')
+      .replaceAll('<', '&lt;')
+      .replaceAll('>', '&gt;')
+      .replaceAll('"', '&quot;')
+      .replaceAll("'", '&#39;');
+  }
+
+  function renderCommentsHtml(html) {
+    commentsList.innerHTML = html;
+  }
+
+  function fetchComments() {
+    const xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function() {
+      if (this.readyState === 4) {
+        if (this.status === 200) {
+          renderCommentsHtml(this.responseText);
+        } else {
+          commentsList.innerHTML = '<p>Sivua ei voitu ladata.</p>';
+        }
+      }
+    };
+    xhr.open('GET', '/luekommentit.php', true);
+    xhr.send();
+  }
+
+  function sendComment() {
+    statusEl.textContent = '';
+    const name = form.name.value.trim();
+    const message = form.message.value.trim();
+    if (!name || !message) {
+      statusEl.textContent = 'Täytä nimi ja palautteesi.';
+      return;
+    }
+
+    const comment = { name: name.slice(0,50), message: message.slice(0,1000) };
+    const json = JSON.stringify(comment);
+
+    const xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function() {
+      if (this.readyState === 4) {
+        if (this.status === 201 || this.status === 200) {
+          form.reset();
+          statusEl.textContent = 'Kiitos palautteestasi!';
+          fetchComments();
+        } else {
+          statusEl.textContent = 'Viestin lähetys epäonnistui.';
+        }
+      }
+    };
+    xhr.open('POST', '/lisaakommentti.php', true);
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    xhr.send('comment=' + encodeURIComponent(json));
+  }
+
+
+  sendBtn.addEventListener('click', sendComment);
+
+  
+  fetchComments();
+  const POLL_INTERVAL_MS = 5000;
+  const pollTimer = setInterval(fetchComments, POLL_INTERVAL_MS);
+  window.addEventListener('beforeunload', () => clearInterval(pollTimer));
+</script>
 
       <div class="liput">
          LIPUT 
