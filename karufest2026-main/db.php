@@ -1,0 +1,1 @@
+$yhteys = mysqli_connect("db","root",password, "vieraskirja");
