@@ -172,7 +172,7 @@
   const pollTimer = setInterval(fetchComments, POLL_INTERVAL_MS);
   window.addEventListener('beforeunload', () => clearInterval(pollTimer));
 
-  
+
 function luekommentit(){
 	xmlhttp = new XMLHttpRequest();
 	xmlhttp.onreadystatechange = function() {
@@ -185,7 +185,7 @@ function luekommentit(){
             );
 	  }
 	};
-	xmlhttp.open("GET", "../php/luekommentitt.php", true);
+	xmlhttp.open("GET", "/luekommentit.php", true);
 	xmlhttp.send();	
 }
 
