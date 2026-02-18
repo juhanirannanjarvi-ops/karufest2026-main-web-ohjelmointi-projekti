@@ -1,58 +1,88 @@
 <?php
 header('Content-Type: application/json; charset=utf-8');
+mysqli_report(MYSQLI_REPORT_OFF);
 
-$file = __DIR__ . '/comments.json';
+$host = 'db';
+$user = 'root';
+$pass = 'password';
+$db   = 'vieraskirja';
 
-$json = isset($_POST['comment']) ? $_POST['comment'] : '';
+function getIncomingJson(): string {
+    $contentType = $_SERVER['CONTENT_TYPE'] ?? '';
+    $raw = file_get_contents('php://input');
 
-if (!($comment = tarkistaJson($json))) {
-    http_response_code(400);
-    echo json_encode(['error' => 'Täytä kaikki kentät']);
-    exit;
+    if (stripos($contentType, 'application/json') !== false) {
+        return $raw ?: '';
+    }
+   
+    if (!empty($_POST['comment'])) {
+        return $_POST['comment'];
+    }
+
+    parse_str($raw, $parsed);
+    return $parsed['comment'] ?? '';
 }
 
 
-$entry = [
-    'id' => (string)round(microtime(true) * 1000),
-    'name' => mb_substr($comment->name, 0, 25),
-    'message' => mb_substr($comment->message, 0, 500),
-    'createdAt' => gmdate('c')
-];
-
-if (!file_exists($file)) {
-    file_put_contents($file, json_encode([]));
-}
-
-$fp = fopen($file, 'c+');
-if (!$fp) {
-    http_response_code(500);
-    echo json_encode(['error' => 'Tallennus epäonnistui']);
-    exit;
-}
-
-flock($fp, LOCK_EX);
-$contents = stream_get_contents($fp);
-$comments = json_decode($contents, true);
-if (!is_array($comments)) $comments = [];
-$comments[] = $entry;
-ftruncate($fp, 0);
-rewind($fp);
-fwrite($fp, json_encode($comments, JSON_UNESCAPED_UNICODE));
-fflush($fp);
-flock($fp, LOCK_UN);
-fclose($fp);
-
-http_response_code(201);
-echo json_encode($entry, JSON_UNESCAPED_UNICODE);
-exit;
-
-function tarkistaJson($json) {
-    if (empty($json)) return false;
-    $obj = json_decode($json);
+function tarkistaJson(string $json) {
+    if (trim($json) === '') return false;
+    $obj = json_decode($json, false);
     if (!is_object($obj)) return false;
-    $name = trim((string)($obj->name ?? ''));
-    $message = trim((string)($obj->message ?? ''));
-    if ($name === '' || $message === '') return false;
+
+    
+    $name = $obj->name ?? $obj->nimi ?? null;
+    $message = $obj->message ?? $obj->kommentti ?? null;
+
+    if (empty($name) || empty($message)) return false;
+
+    
+    $obj->name = mb_substr((string)$name, 0, 25);
+    $obj->message = mb_substr((string)$message, 0, 500);
+
     return $obj;
 }
-?>
+
+
+$json = getIncomingJson();
+$inputObj = tarkistaJson($json);
+
+if ($inputObj === false) {
+    http_response_code(400);
+    echo json_encode(['error' => 'Täytä nimi ja palaute (JSON puuttuu tai kentät tyhjiä).']);
+    exit;
+}
+
+$mysqli = mysqli_connect($host, $user, $pass, $db);
+if (!$mysqli) {
+    http_response_code(500);
+    echo json_encode(['error' => 'Tietokantayhteys epäonnistui.']);
+    exit;
+}
+$mysqli->set_charset('utf8mb4');
+
+$sql = 'INSERT INTO kommentti (nimi, kommentti) VALUES (?, ?)';
+$stmt = mysqli_prepare($mysqli, $sql);
+if (!$stmt) {
+    http_response_code(500);
+    echo json_encode(['error' => 'Tietokantakyselyn valmistelu epäonnistui.']);
+    $mysqli->close();
+    exit;
+}
+
+
+$nimi = $inputObj->name;
+$kommentti = $inputObj->message;
+mysqli_stmt_bind_param($stmt, 'ss', $nimi, $kommentti);
+
+$ok = mysqli_stmt_execute($stmt);
+if ($ok) {
+    $insertId = mysqli_insert_id($mysqli);
+    http_response_code(201);
+    echo json_encode(['success' => true, 'id' => $insertId]);
+} else {
+    http_response_code(500);
+    echo json_encode(['error' => 'Tallennus epäonnistui.']);
+}
+
+mysqli_stmt_close($stmt);
+$mysqli->close();

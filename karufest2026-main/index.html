@@ -5,252 +5,223 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>KARUFEST</title>
   <link rel="stylesheet" href="style.css" />
-</head>    
+</head>
 <body>
- 
-  <div class="wrappi">
-  <img class="kuva" src="backround_1.jpg" alt="HEADER-image">
 
-  <!-- HEADERI, laitetaan kielenvaihto linkki ja iso KARU teksti ylös. Näille omat classit-->
+  <div class="wrappi">
+    <img class="kuva" src="backround_1.jpg" alt="HEADER-image">
+
+    <!-- HEADERI -->
     <div class="header">
       <div class="lang-switch">
         <a class="active fi">FI</a>
         <span></span>
         <a href="index_sve.html" class="sv">SVE</a>
       </div>
-      <div class = "bigkaru" >Karu</div>
+      <div class="bigkaru">Karu</div>
     </div>
 
-    <!-- Osote ja päivämäärä lisätty, omana pvm classina. -->
+    <!-- PVM -->
     <div class="pvm">
-    6.7.-7.7.2026 / MURKU, MARMELADINPUISTO
+      6.7.-7.7.2026 / MURKU, MARMELADINPUISTO
     </div>
-    
 
+    <!-- NAV / ESIINTYJÄT -->
+    <div class="navEsi">ESIINTYJÄT</div>
 
-    <!-- NAV ALUE, tässä kaikki teksit laitettu omiin nav classeihin. Lisätään kuvat jne -->
-    <div class="navEsi">
-        ESIINTYJÄT
-      </div>
-    
-
-    <div class="navPe">
-      PERJANTAI
-    </div>
+    <div class="navPe">PERJANTAI</div>
     <div class="imageboxes">
-      <div class="imagebox">
-      <img src="Bring-Me-the-Horizon-Logo.png" alt="BAND LOGO, Bring me the horizon">
-      </div>
-      <div class="imagebox">
-        <img src="MIW_LOGO.png" alt="BAND LOGO, motionless in white"></div>
-      <div class="imagebox">
-        <img src="TITANS_LOGO.png" alt="BAND LOGO, Titans">
-      </div>
-      <div class="imagebox">
-        <img src="OURMISS_LOGO.png" alt="BAND LOGO, Our mistress"
-        ></div>
+      <div class="imagebox"><img src="Bring-Me-the-Horizon-Logo.png" alt="BAND LOGO, Bring me the horizon"></div>
+      <div class="imagebox"><img src="MIW_LOGO.png" alt="BAND LOGO, motionless in white"></div>
+      <div class="imagebox"><img src="TITANS_LOGO.png" alt="BAND LOGO, Titans"></div>
+      <div class="imagebox"><img src="OURMISS_LOGO.png" alt="BAND LOGO, Our mistress"></div>
     </div>
 
-
-    <div class="navLa">
-        LAUANTAI
-    </div>
+    <div class="navLa">LAUANTAI</div>
     <div class="imageboxes">
-      <div class="imagebox">
-        <img src="MORKO_LOGO.png" alt="BAND LOGO, Morko">
-      </div>
-      <div class="imagebox">
-        <img src="SLIME_LOGO.png" alt="BAND LOGO, Slime corp">
-      </div>
-      <div class="imagebox">
-        <img src="FLOWER_LOGO.png" alt="BAND LOGO, flower">
-      </div>
-      <div class="imagebox">
-        <img src="CHAINSAWMAN_LOGO.png" alt="BAND LOGO, Chainsasw man">
-      </div>
+      <div class="imagebox"><img src="MORKO_LOGO.png" alt="BAND LOGO, Morko"></div>
+      <div class="imagebox"><img src="SLIME_LOGO.png" alt="BAND LOGO, Slime corp"></div>
+      <div class="imagebox"><img src="FLOWER_LOGO.png" alt="BAND LOGO, flower"></div>
+      <div class="imagebox"><img src="CHAINSAWMAN_LOGO.png" alt="BAND LOGO, Chainsaw man"></div>
     </div>
 
+    <div class="navInfo">INFO</div>
 
-    <div class="navInfo">
-        INFO
+    <div class="infoText">
+      <p>KARUFEST ON K18 TAPAHTUMA. LISÄTIEDOT AUKILOAJOISTA, ESIINTYJIEN AIKATAULUISTA SEKÄ RUOKAKOJUISTA 2026 TULOSSA PIAN.</p>
+    </div>
+
+    <!-- Kommentit / palaute -->
+    <section id="comments-section" aria-labelledby="comments-title">
+      <h2 id="comments-title">Palaute</h2>
+
+      <form id="comment-form" class="comment-form" onsubmit="return false;">
+        <label for="name">Nimi</label><br>
+        <input type="text" id="name" name="name" required maxlength="25" placeholder="Nimesi" /><br>
+
+        <label for="message">Palaute</label><br>
+        <textarea id="message" name="message" required maxlength="500" rows="4" placeholder="Kirjoita palautteesi"></textarea><br>
+
+        <!-- Poistettu inline onclick, skripti liittää kuuntelijan -->
+        <button id="send-btn" type="button">Lähetä</button>
+        <span id="form-status" aria-live="polite"></span>
+      </form>
+
+      <h3>Asiakkaiden palaute</h3>
+      <div id="comments-list" aria-live="polite"></div>
+    </section>
+
+    <!-- Muut elementit sivulla -->
+    <div class="liput">LIPUT</div>
+
+    <div class="navAiemmat">KARUFEST AIKAISEMMAT VUODET</div>
+
+    <div class="imageboxes_previous">
+      <div class="imagebox_previous"><img src="FESTKUVA.jpg" alt="KARUFEST2022_PICTURE"></div>
+      <div class="imagebox_previous"><img src="FESTKUVA2.jpg" alt="KARUFEST2023_PICTURE"></div>
+      <div class="imagebox_previous"><img src="FESTKUVA1.jpg" alt="KARUFEST2025_PICTURE"></div>
+      <div class="imagebox_previous"><img src="FESTKUVA3.jpg" alt="KARUFEST2021_PICTURE"></div>
+      <div class="imagebox_previous"><img src="FESTKUVA4.jpg" alt="KARUFEST2024_PICTURE"></div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="footer-left">
+        <p class="footer-title">YHTEYSTIEDOT</p>
+        <p>+358 44 696744</p>
+        <p>KISSANTASSUKUJA 6, HERMINKI 00550</p>
+        <p>KARUFEST@GMAIL.COM</p>
       </div>
+      <div class="footer-right">Karu</div>
+    </footer>
 
-      <div class="infoText"> 
-        <p> KARUFEST ON K18 TAPAHTUMA. LISÄTIEDOT AUKILOAJOISTA, ESIINTYJIEN AIKATAULUISTA SEKÄ RUOKAKOJUISTA 2026 TULOSSA PIAN. </p>
-      </div>
+  </div> <!-- .wrappi -->
 
-      <section id="comments-section" aria-labelledby="comments-title">
-  <h2 id="comments-title">Palaute</h2>
+  <!-- YHDISTETTY KOMMENTTI-SKRIPTI: liitä tämä ennen </body> ja poista kaikki vanhat kommentti-skriptit -->
+  <script>
+  (function () {
+    const commentsList = document.getElementById('comments-list');
+    const statusEl = document.getElementById('form-status');
+    const form = document.getElementById('comment-form');
+    const sendBtn = document.getElementById('send-btn');
 
-  <form id="comment-form" class="comment-form" onsubmit="return false;">
-    <label for="name">Nimi</label><br>
-    <input type="text" id="name" name="name" required maxlength="25" placeholder="Nimesi" /><br>
-
-    <label for="message">Palaute</label><br>
-    <textarea id="message" name="message" required maxlength="500" rows="4" placeholder="Kirjoita palautteesi"></textarea><br>
-
-    <button id="send-btn" type="button" onclick="sendComment(this.form);">Lähetä</button>
-    <span id="form-status" aria-live="polite"></span>
-  </form>
-
-  <h3>Asiakkaiden palaute</h3>
-  <div id="comments-list" aria-live="polite">
-  
-  </div>
-</section>
-
-<script>
-  
-  const commentsList = document.getElementById('comments-list');
-  const statusEl = document.getElementById('form-status');
-  const form = document.getElementById('comment-form');
-  const sendBtn = document.getElementById('send-btn');
-
-  function escapeHtml(s) {
-    return String(s)
-      .replaceAll('&', '&amp;')
-      .replaceAll('<', '&lt;')
-      .replaceAll('>', '&gt;')
-      .replaceAll('"', '&quot;')
-      .replaceAll("'", '&#39;');
-  }
-
-  function renderCommentsHtml(html) {
-    commentsList.innerHTML = html;
-  }
-
-  function fetchComments() {
-    const xhr = new XMLHttpRequest();
-    xhr.onreadystatechange = function() {
-      if (this.readyState === 4) {
-        if (this.status === 200) {
-          renderCommentsHtml(this.responseText);
-        } else {
-          commentsList.innerHTML = '<p>Sivua ei voitu ladata.</p>';
-        }
-      }
-    };
-    xhr.open('GET', '/luekommentit.php', true);
-    xhr.send();
-  }
-
-  function sendComment(form) {
-    statusEl.textContent = '';
-    const name = form.name.value.trim();
-    const message = form.message.value.trim();
-    if (!name || !message) {
-      statusEl.textContent = 'Täytä nimi ja palautteesi.';
-      return;
+    function escapeHtml(s) {
+      return String(s)
+        .replaceAll('&', '&amp;')
+        .replaceAll('<', '&lt;')
+        .replaceAll('>', '&gt;')
+        .replaceAll('"', '&quot;')
+        .replaceAll("'", '&#39;');
     }
 
-    const comment = { name: name.slice(0,50), message: message.slice(0,1000) };
-    const json = JSON.stringify(comment);
+    function renderComments(comments) {
+      if (!Array.isArray(comments) || comments.length === 0) {
+        commentsList.innerHTML = '<p>Ei vielä palautteita.</p>';
+        return;
+      }
 
-    const xhr = new XMLHttpRequest();
-    xhr.onreadystatechange = function() {
-      if (this.readyState === 4) {
-        if (this.status === 201 || this.status === 200) {
+      // Yksinkertainen taulukko, Poista-painike jokaisen rivin oikeassa sarakkeessa
+      const rows = comments.map(c => {
+        const id = c.id ?? '';
+        const name = escapeHtml(c.nimi ?? c.name ?? 'Anonyymi');
+        const msg = escapeHtml(c.kommentti ?? c.message ?? '');
+        const time = c.luotu ? ' — ' + escapeHtml(c.luotu) : '';
+        return `<tr data-id="${id}">
+          <td style="padding:6px; vertical-align:top;">
+            <strong>${name}</strong><span style="color:#666; margin-left:8px;">${time}</span>
+            <div style="margin-top:6px; white-space:pre-wrap;">${msg}</div>
+          </td>
+          <td style="padding:6px; vertical-align:top; width:120px; text-align:right;">
+            <button class="delete-comment" data-id="${id}">Poista</button>
+          </td>
+        </tr>`;
+      }).join('');
+
+      commentsList.innerHTML = `<table style="width:100%; border-collapse:collapse;">${rows}</table>`;
+    }
+
+    async function fetchComments() {
+      try {
+        const res = await fetch('/luekommentit.php', { cache: 'no-store' });
+        if (!res.ok) throw new Error('Luku epäonnistui');
+        const data = await res.json();
+        renderComments(data);
+      } catch (e) {
+        commentsList.innerHTML = '<p>Sivua ei voitu ladata.</p>';
+        console.error(e);
+      }
+    }
+
+    async function sendCommentHandler(event) {
+      event.preventDefault();
+      statusEl.textContent = '';
+      const name = form.name.value.trim();
+      const message = form.message.value.trim();
+      if (!name || !message) {
+        statusEl.textContent = 'Täytä nimi ja palautteesi.';
+        return;
+      }
+      const payload = { name: name.slice(0,50), message: message.slice(0,1000) };
+
+      try {
+        const res = await fetch('/lisaakommentti.php', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+        const json = await res.json();
+        if (res.ok) {
           form.reset();
           statusEl.textContent = 'Kiitos palautteestasi!';
           fetchComments();
         } else {
-          statusEl.textContent = 'Viestin lähetys epäonnistui.';
+          statusEl.textContent = json.error || 'Viestin lähetys epäonnistui.';
         }
+      } catch (e) {
+        statusEl.textContent = 'Viestin lähetys epäonnistui.';
+        console.error(e);
       }
-    };
-    xhr.open('POST', '/lisaakommentti.php', true);
-    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-    xhr.send('comment=' + encodeURIComponent(json));
-  }
+    }
 
+    // Poisto: event delegation toimii myös taulukon nappien kanssa
+    commentsList.addEventListener('click', async (e) => {
+      const btn = e.target.closest('.delete-comment');
+      if (!btn) return;
+      const id = btn.getAttribute('data-id');
+      if (!id) return;
+      if (!confirm('Haluatko varmasti poistaa tämän kommentin?')) return;
 
-  sendBtn.addEventListener('click', sendComment);
+      try {
+        const res = await fetch('/poistakommentti.php', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ id: Number(id) })
+        });
+        const json = await res.json();
+        if (res.ok) {
+          const row = commentsList.querySelector(`tr[data-id="${id}"]`);
+          if (row) row.remove();
+          statusEl.textContent = 'Kommentti poistettu.';
+        } else {
+          statusEl.textContent = json.error || 'Poisto epäonnistui.';
+        }
+      } catch (err) {
+        statusEl.textContent = 'Poisto epäonnistui.';
+        console.error(err);
+      }
+    });
 
-  
-  fetchComments();
-  const POLL_INTERVAL_MS = 5000;
-  const pollTimer = setInterval(fetchComments, POLL_INTERVAL_MS);
-  window.addEventListener('beforeunload', () => clearInterval(pollTimer));
+    // Alustus
+    // Poistetaan mahdollinen inline-onclick, liitetään tapahtumankuuntelija
+    try { sendBtn.removeAttribute('onclick'); } catch (e) {}
+    sendBtn.addEventListener('click', sendCommentHandler);
 
+    fetchComments();
+    const POLL_INTERVAL_MS = 5000;
+    const pollTimer = setInterval(fetchComments, POLL_INTERVAL_MS);
+    window.addEventListener('beforeunload', () => clearInterval(pollTimer));
+  })();
+  </script>
 
-function luekommentit(){
-	xmlhttp = new XMLHttpRequest();
-	xmlhttp.onreadystatechange = function() {
-	  if (this.readyState == 4 && this.status == 200) {
-	  		json=this.responseText;
-		    document.getElementById("luekommentit").innerHTML = json;
-		    kommentit=JSON.parse(json);
-		    tulostakommentit(kommentit
-    
-            );
-	  }
-	};
-	xmlhttp.open("GET", "/luekommentit.php", true);
-	xmlhttp.send();	
-}
-
-function tulostakommentit(kommentit){
-	let text="<table border='1'>";
-	for (x in kommentit){
-		text+="<tr><td>"+kommentit[x].id+"<td>"+kommentit[x].nimi+"<td>"+kommentit[x].kommentti;
-	}
-	text+="</table>";
-	document.getElementById("kommentittaulukko").innerHTML=text;
-}
-
-
-</script>
-<p>
-Ks. <a href='https://www.w3schools.com/js/js_json_html.asp' target='_blank'>https://www.w3schools.com/js/js_json_html.asp</a>
-</p>
-<button onclick='luekommentti();'>Lue kommenti
-</button>
-<p id='kommentitjson'>
-Tulos tähän
-</p>
-<h2>kommentit taulukossa</h2>
-<div id='kommentittaulukko'></div>
-</script>
-
-      <div class="liput">
-         LIPUT 
-      </div>
-
-
-     <div  class="navAiemmat">
-      KARUFEST AIKAISEMMAT VUODET
-    </div>
-
-    <div class="imageboxes_previous">
-      <div class="imagebox_previous">
-        <img src="FESTKUVA.jpg" alt="KARUFEST2022_PICTURE">
-      </div>
-      <div class="imagebox_previous">
-        <img src="FESTKUVA2.jpg" alt="KARUFEST2023_PICTURE">
-      </div>
-      <div class="imagebox_previous">
-        <img src="FESTKUVA1.jpg" alt="KARUFEST2025_PICTURE">
-      </div>
-      <div class="imagebox_previous">
-        <img src="FESTKUVA3.jpg" alt="KARUFEST2021_PICTURE">
-      </div>
-      <div class="imagebox_previous">
-        <img src="FESTKUVA4.jpg" alt="KARUFEST2024_PICTURE">
-      </div>
-    </div>
-
-
-    <!-- Footterit lisättty ja määritelty.-->
-  <footer class="footer">
-      <div class="footer-left">
-        <p class="footer-title">YHTEYSTIEDOT</p>
-        <p>+358 44 696744</p>
-        <p>KISSANTASSUKUJA 6, HERMINKI 00550</p>        
-        <p>KARUFEST@GMAIL.COM</p>
-      </div>
-      <div class="footer-right">
-        Karu
-      </div>
-  <footer>
 </body>
 </html>
