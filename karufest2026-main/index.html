@@ -95,9 +95,8 @@
       <div class="footer-right">Karu</div>
     </footer>
 
-  </div> <!-- .wrappi -->
+  </div> 
 
-  <!-- YHDISTETTY KOMMENTTI-SKRIPTI: liitä tämä ennen </body> ja poista kaikki vanhat kommentti-skriptit -->
   <script>
   (function () {
     const commentsList = document.getElementById('comments-list');
@@ -120,7 +119,7 @@
         return;
       }
 
-      // Yksinkertainen taulukko, Poista-painike jokaisen rivin oikeassa sarakkeessa
+      
       const rows = comments.map(c => {
         const id = c.id ?? '';
         const name = escapeHtml(c.nimi ?? c.name ?? 'Anonyymi');
@@ -183,7 +182,7 @@
       }
     }
 
-    // Poisto: event delegation toimii myös taulukon nappien kanssa
+    
     commentsList.addEventListener('click', async (e) => {
       const btn = e.target.closest('.delete-comment');
       if (!btn) return;
@@ -211,8 +210,7 @@
       }
     });
 
-    // Alustus
-    // Poistetaan mahdollinen inline-onclick, liitetään tapahtumankuuntelija
+    
     try { sendBtn.removeAttribute('onclick'); } catch (e) {}
     sendBtn.addEventListener('click', sendCommentHandler);
 
