@@ -12,8 +12,8 @@ $tulos=mysqli_query($yhteys, "select * from kommentti");
 while ($rivi=mysqli_fetch_object($tulos)){
     $kommentti=new class{};
     $kommentti->id=$rivi->id;
-    $kommentti->laji=$rivi->laji;
-    $kommentti->paino=$rivi->paino;
+    $kommentti->nimi=$rivi->nimi;
+    $kommentti->kommentti=$rivi->kommentti;
     $kommentti[]=$kommentti;
 }
 mysqli_close($yhteys);
