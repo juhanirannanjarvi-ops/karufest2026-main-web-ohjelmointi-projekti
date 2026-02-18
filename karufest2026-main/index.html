@@ -89,7 +89,7 @@
     <label for="message">Palaute</label><br>
     <textarea id="message" name="message" required maxlength="500" rows="4" placeholder="Kirjoita palautteesi"></textarea><br>
 
-    <button id="send-btn" type="button">Lähetä</button>
+    <button id="send-btn" type="button" onclick="sendComment(this.form);">Lähetä</button>
     <span id="form-status" aria-live="polite"></span>
   </form>
 
@@ -134,7 +134,7 @@
     xhr.send();
   }
 
-  function sendComment() {
+  function sendComment(form) {
     statusEl.textContent = '';
     const name = form.name.value.trim();
     const message = form.message.value.trim();
