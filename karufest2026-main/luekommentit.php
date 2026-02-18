@@ -14,8 +14,8 @@ while ($rivi=mysqli_fetch_object($tulos)){
     $kommentti->id=$rivi->id;
     $kommentti->nimi=$rivi->nimi;
     $kommentti->kommentti=$rivi->kommentti;
-    $kommentti[]=$kommentti;
+    $kommentit[]=$kommentti;
 }
 mysqli_close($yhteys);
-print json_encode($kommentti);
+print json_encode($kommentit);
 ?>
