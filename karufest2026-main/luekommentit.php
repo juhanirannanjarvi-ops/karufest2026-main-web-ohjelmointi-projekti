@@ -1,35 +1,21 @@
 <?php
-
-header('Content-Type: text/html; charset=utf-8');
-
-$file = __DIR__ . '/comments.json';
-if (!file_exists($file)) {
-    echo '<p>Ei vielä kommentteja.</p>';
+mysqli_report(MYSQLI_REPORT_ALL ^ MYSQLI_REPORT_INDEX);
+try{
+    $yhteys=mysqli_connect("db", "root", "password", "vieraskirja");
+}
+catch(Exception $e){
+    header("Location:../html/yhteysvirhe.html");
     exit;
 }
+$tulos=mysqli_query($yhteys, "select * from kommentti");
 
-$contents = file_get_contents($file);
-$comments = json_decode($contents, true);
-if (!is_array($comments) || count($comments) === 0) {
-    echo '<p>Ei vielä kommentteja.</p>';
-    exit;
+while ($rivi=mysqli_fetch_object($tulos)){
+    $kommentti=new class{};
+    $kommentti->id=$rivi->id;
+    $kommentti->laji=$rivi->laji;
+    $kommentti->paino=$rivi->paino;
+    $kommentti[]=$kommentti;
 }
-
-$comments = array_reverse($comments);
-
-function esc($s) {
-    return htmlspecialchars((string)$s, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
-}
-
-echo '<div class="comments">';
-foreach ($comments as $c) {
-    $name = esc($c['name'] ?? 'Tuntematon');
-    $message = nl2br(esc($c['message'] ?? ''));
-    $time = esc($c['createdAt'] ?? '');
-    echo "<article class=\"comment\">";
-    echo "<p class=\"comment-meta\"><strong>{$name}</strong> — <time datetime=\"{$time}\">{$time}</time></p>";
-    echo "<div class=\"comment-body\">{$message}</div>";
-    echo "</article>";
-}
-echo '</div>';
+mysqli_close($yhteys);
+print json_encode($kommentti);
 ?>

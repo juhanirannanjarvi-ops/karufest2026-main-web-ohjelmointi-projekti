@@ -171,6 +171,45 @@
   const POLL_INTERVAL_MS = 5000;
   const pollTimer = setInterval(fetchComments, POLL_INTERVAL_MS);
   window.addEventListener('beforeunload', () => clearInterval(pollTimer));
+
+  
+function luekommentit(){
+	xmlhttp = new XMLHttpRequest();
+	xmlhttp.onreadystatechange = function() {
+	  if (this.readyState == 4 && this.status == 200) {
+	  		json=this.responseText;
+		    document.getElementById("luekommentit").innerHTML = json;
+		    kommentit=JSON.parse(json);
+		    tulostakommentit(kommentit
+    
+            );
+	  }
+	};
+	xmlhttp.open("GET", "../php/luekommentitt.php", true);
+	xmlhttp.send();	
+}
+
+function tulostakommentit(kommentit){
+	let text="<table border='1'>";
+	for (x in kommentit){
+		text+="<tr><td>"+kommentit[x].id+"<td>"+kommentit[x].nimi+"<td>"+kommentit[x].kommentti;
+	}
+	text+="</table>";
+	document.getElementById("kommentittaulukko").innerHTML=text;
+}
+
+
+</script>
+<p>
+Ks. <a href='https://www.w3schools.com/js/js_json_html.asp' target='_blank'>https://www.w3schools.com/js/js_json_html.asp</a>
+</p>
+<button onclick='luekommentti();'>Lue kommenti
+</button>
+<p id='kommentitjson'>
+Tulos tähän
+</p>
+<h2>kommentitt taulukossa</h2>
+<div id='kommentittaulukko'></div>
 </script>
 
       <div class="liput">
