@@ -1,21 +1,16 @@
 <?php
-mysqli_report(MYSQLI_REPORT_ALL ^ MYSQLI_REPORT_INDEX);
-try{
-    $yhteys=mysqli_connect("db", "root", "password", "vieraskirja");
-}
-catch(Exception $e){
-    header("Location:../html/yhteysvirhe.html");
-    exit;
-}
-$tulos=mysqli_query($yhteys, "select * from kommentti");
+$yhteys = mysqli_connect("db", "root", "password", "vieraskirja");
+if (!$yhteys) die(json_encode([]));
 
-while ($rivi=mysqli_fetch_object($tulos)){
-    $kommentti=new class{};
-    $kommentti->id=$rivi->id;
-    $kommentti->nimi=$rivi->nimi;
-    $kommentti->kommentti=$rivi->kommentti;
-    $kommentit[]=$kommentti;
+$tulos = mysqli_query($yhteys, "SELECT id, nimi, kommentti FROM kommentti ORDER BY id DESC");
+
+$kommentit = [];
+while ($rivi = mysqli_fetch_assoc($tulos)) {
+    $kommentit[] = $rivi;
 }
+
 mysqli_close($yhteys);
-print json_encode($kommentit);
+
+header("Content-Type: application/json");
+echo json_encode($kommentit);
 ?>
